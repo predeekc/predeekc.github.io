@@ -11,47 +11,86 @@
 
 $include-html-global-classes: true;
 
-
 @import "foundation";
-
-
 
 // Background color for the top bar
 $topbar-bg-color: $oil;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-$topbar-height: rem-calc(45);
+$topbar-height: rem-calc(64);
 $topbar-margin-bottom: 0;
+$topbar-padding-side: rem-calc(14);
 
 // Controlling the styles for the title in the top bar
 $topbar-title-weight: $font-weight-normal;
-$topbar-title-font-size: rem-calc(17);
+$topbar-title-font-size: rem-calc(36);
+
+$topbar-link-line-height: rem-calc(30);
+$topbar-link-font-size: rem-calc(24);
+$topbar-link-weight-size: $font-weight-normal;
+$topbar-link-padding-side: rem-calc(12);
 
 $topbar-breakpoint: #{lower-bound($medium-range)}; // Change to 9999px for always mobile layout
 $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint)})";
 
 .top-bar {
+	@include clearfix;
+
 	background: $topbar-bg;
 	margin-bottom: $topbar-margin-bottom;
 	overflow: hidden;
 	position: relative;
 
-	@media screen and (min-width:#{lower-bound($topbar-breakpoint)}) {
-		height: $topbar-height;
+	padding-left: $topbar-padding-side;
+	padding-right: $topbar-padding-side;
+
+	.title {
 		line-height: $topbar-height;
-
-	    .top-nav {
-			ul, li { display: inline;}
-		}	
-	}
-
-	ul {
-		list-style: none;
-		padding: 0;
 		margin: 0;
+		position: relative;
+		font-size: $topbar-title-font-size;
 	}
 
+	.top-nav {
+		font-size: $topbar-link-font-size;
+			padding-left: $topbar-padding-side;
+	}
+
+	.link {
+		color: white;
+		padding-left: $topbar-link-padding-side;
+		padding-right: $topbar-link-padding-side;
+
+	}
+
+	// mobile
+	@media screen and (max-width:#{lower-bound($topbar-breakpoint)}) {
+
+		#nav-toggle:checked ~ .top-nav {
+			display: none;
+		}
+		
+		.link {
+			display: block;
+		}
+	}
+
+	// bigger than mobile
+	@media screen and (min-width:#{lower-bound($topbar-breakpoint)}) {
+		.nav-toggle {
+			display: none;
+		}
+
+		.title {
+			float: left !important;
+		}
+
+		.top-nav {
+			line-height: $topbar-height;
+			float: right !important;
+		}
+	}
 }
 .top-bar .title {
 	margin: 0;
@@ -59,15 +98,10 @@ $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint
 	font-size: $topbar-title-font-size;
 }
 
-.top-bar .name {	
-}
-
-.top-bar--link {
-	color: white;
-	font-size: rem-calc(13);
-	font-weight: normal;
-
+.link {
+	text-decoration: none;
 	&:hover {
+		text-decoration: underline;
 		background-folor: $charcoal;
 	}
 

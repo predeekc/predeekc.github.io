@@ -1,15 +1,15 @@
-<header class="top-bar clearfix">
-	<a class="title top-bar--link" href="#">{{ site.title }}</a>
-	<nav class="top-nav right">
-		<ul>
-			{% assign pages = site.pages | sort:"order" %}
-			{% for page in pages %}
-			{% if page.title %}
-			<li>
-				<a class="top-bar--link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-			</li>
-			{% endif %}
-			{% endfor %}
-		</ul>
+<header class="top-bar">
+	<section class="title clearfix">
+		<a class="link left" href="#">{{ site.title }}</a>
+		<label class="nav-toggle right" for="nav-toggle">Tg</label>
+	</section>
+	<input id="nav-toggle" class="hide" type="checkbox" />
+	<nav class="top-nav">
+		{% assign pages = site.pages | sort:"order" %}
+		{% for page in pages %}
+		{% if page.title %}
+		<a class="link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+		{% endif %}
+		{% endfor %}
 	</nav>
 </header>

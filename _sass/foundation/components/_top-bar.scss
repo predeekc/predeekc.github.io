@@ -216,7 +216,7 @@ $topbar-dropdown-arrows: true !default; //Set false to remove the \00bb >> text 
           line-height: $topbar-height;
           margin: 0;
 
-          a {
+         a {
             color: $topbar-link-color;
             display: block;
             font-weight: $topbar-title-weight;
