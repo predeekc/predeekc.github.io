@@ -18,30 +18,36 @@ $topbar-bg-color: $oil;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-$topbar-height: rem-calc(64);
+$topbar-height: rem-calc(42);
 $topbar-margin-bottom: 0;
 $topbar-padding-side: rem-calc(14);
 
 // Controlling the styles for the title in the top bar
 $topbar-title-weight: $font-weight-normal;
-$topbar-title-font-size: rem-calc(36);
+$topbar-title-font-size: rem-calc(24);
 
 $topbar-link-line-height: rem-calc(30);
-$topbar-link-font-size: rem-calc(24);
+$topbar-link-font-size: rem-calc(18);
 $topbar-link-weight-size: $font-weight-normal;
 $topbar-link-padding-side: rem-calc(12);
 
 $topbar-breakpoint: #{lower-bound($medium-range)}; // Change to 9999px for always mobile layout
 $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint)})";
 
-.top-bar {
-	@include clearfix;
+@mixin rotate($rotation) {
+	-webkit-transform: rotate($rotation);
+	-moz-transform: rotate($rotation);
+	-ms-transform: rotate($rotation);
+    transform: rotate($rotation);
+}
 
+.top-bar {
 	background: $topbar-bg;
 	margin-bottom: $topbar-margin-bottom;
 	overflow: hidden;
 	position: relative;
 
+	padding-top: rem-calc(3);
 	padding-left: $topbar-padding-side;
 	padding-right: $topbar-padding-side;
 
@@ -57,23 +63,22 @@ $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint
 		padding-left: $topbar-padding-side;
 	}
 
-	.link {
+	link {
 		color: white;
 		padding-left: $topbar-link-padding-side;
 		padding-right: $topbar-link-padding-side;
 	}
 
 	.top-nav {
+		-webkit-transform: translateZ(0);
 		-webkit-transition: height .5s;
 	}
 
 	// mobile
 	@media screen and (max-width:#{lower-bound($topbar-breakpoint)}) {
-
-		
-	
 		.nav-toggle {
 			-webkit-transition: transform .5s;
+			margin-top: rem-calc(8);
 		}
 
 		#nav-toggle:checked ~ .top-nav {
@@ -81,11 +86,12 @@ $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint
 		}
 
 		#nav-toggle:not(:checked) ~ .top-nav {
+			// TODO: figure out how to not hardcode this value
 			height: rem-calc(72);
 		}
 
 		#nav-toggle:not(:checked) ~ .title .nav-toggle {
-			-webkit-transform: rotate(180deg);
+			@include rotate(180deg);
 		}
 
 		.link {
@@ -95,6 +101,8 @@ $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint
 
 	// bigger than mobile
 	@media screen and (min-width:#{lower-bound($topbar-breakpoint)}) {
+		@include clearfix;
+
 		.nav-toggle {
 			display: none;
 		}
@@ -109,13 +117,9 @@ $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint
 		}
 	}
 }
-.top-bar .title {
-	margin: 0;
-	position: relative;
-	font-size: $topbar-title-font-size;
-}
 
 .link {
+	color: white;
 	text-decoration: none;
 	&:hover {
 		text-decoration: underline;
@@ -128,7 +132,18 @@ $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint
 
 .arrow {
 	color: white;
-	-webkit-transform: rotate(90deg);
-	display: block;
-	padding-bottom: rem-calc(5px);
+
+	position: relative;
+	display:block;
+	width: rem-calc(24);
+	height: rem-calc(24);
+	font-size: 2.5rem;
+	overflow: hidden;
+
+	span {
+	@include rotate(90deg);
+		position: absolute;
+		top: rem-calc(-9);
+		left: rem-calc(5);
+	}
 }
