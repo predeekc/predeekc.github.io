@@ -1,8 +1,8 @@
 <header class="top-bar">
-	<input id="nav-toggle" class="" type="checkbox" checked />
+	<input id="nav-toggle" class="hide" type="checkbox" checked />
 	<section class="title clearfix">
 		<a class="link left" href="#">{{ site.title }}</a>
-		<label class="nav-toggle right" onclick="" for="nav-toggle"><span class="arrow link"><span>»</span></span></label>
+		<label class="nav-toggle right arrow link" for="nav-toggle"><span>»</span></label>
 	</section>
 	<nav class="top-nav">
 		{% assign pages = site.pages | sort:"order" %}
