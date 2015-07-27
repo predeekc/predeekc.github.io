@@ -63,8 +63,7 @@ $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint
 		padding-left: $topbar-padding-side;
 	}
 
-	link {
-		color: white;
+	.link {
 		padding-left: $topbar-link-padding-side;
 		padding-right: $topbar-link-padding-side;
 	}
@@ -112,18 +111,16 @@ $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint
 		}
 
 		.top-nav {
-			line-height: $topbar-height;
 			float: right !important;
 		}
 	}
 }
 
 .link {
-	color: white;
 	text-decoration: none;
+	color: #DDD;
 	&:hover {
-		text-decoration: underline;
-		background-folor: $charcoal;
+		color: white;
 	}
 
 	&:active {
@@ -131,7 +128,6 @@ $topbar-media-query: "#{$screen} and (min-width:#{lower-bound($topbar-breakpoint
 }
 
 .arrow {
-	color: white;
 
 	position: relative;
 	display:block;
